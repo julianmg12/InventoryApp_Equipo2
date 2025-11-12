@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.MiniProyecto" parent="android:Theme.Material.Light.NoActionBar" />
+    <!-- 🌙 Tema principal (para pantallas con Toolbar, como HomeInventario) -->
+    <style name="Theme.MiniProyecto" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Colores base -->
+        <item name="colorPrimary">#FA8523</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondary">#e7522e</item>
+        <item name="android:statusBarColor">#000000</item>
+        <item name="android:navigationBarColor">#000000</item>
+        <item name="android:windowBackground">#CC000000</item>
+    </style>
+
+    <!-- 🕶️ Tema sin barra de acción (para LoginActivity, HU 2.0) -->
+    <style name="Theme.MiniProyecto.NoActionBar" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowBackground">#212121</item>
+    </style>
+
 </resources>

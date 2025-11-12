@@ -1,91 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/widget_root"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
-    android:background="@drawable/bg_widget_rounded"
-    android:padding="10dp">
+    android:layout_height="wrap_content"
+    android:background="#CC000000"
+    android:padding="12dp">
 
-    <!-- Logo y texto "Inventory" -->
-    <LinearLayout
+    <!-- Logo app -->
+    <ImageView
+        android:id="@+id/widget_logo"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/ic_inventory_logo"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:contentDescription="Logo Inventory" />
+
+    <!-- Texto Inventory debajo del logo -->
+    <TextView
+        android:id="@+id/widget_title"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/widget_logo"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_inventory_logo"
-            android:contentDescription="Logo Inventory" />
-
-        <TextView
-            android:id="@+id/widget_label_inventory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Inventory"
-            android:textColor="#e7522e"
-            android:textSize="14sp"
-            android:layout_marginTop="4dp"/>
-    </LinearLayout>
-
-    <!-- Texto y saldo -->
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_alignParentRight="true"
-        android:paddingStart="20dp"
-        android:gravity="top|right">
-
-        <TextView
-            android:id="@+id/widget_question"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="¿Cuánto tengo de inventario?"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"/>
-
-        <TextView
-            android:id="@+id/widget_balance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="$****"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp"
-            android:layout_marginTop="8dp"/>
-
-        <ImageView
-            android:id="@+id/widget_eye_icon"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/ic_eye_open"
-            android:contentDescription="Icono Ojo" />
-    </LinearLayout>
-
-    <!-- Gestionar inventario y icono -->
-    <LinearLayout
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="end|bottom"
-        android:padding="10dp"
-        android:orientation="horizontal">
+        android:text="Inventory"
+        android:textColor="#e7522e"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:layout_below="@id/widget_logo"
+        android:layout_alignStart="@id/widget_logo"
+        android:layout_marginTop="4dp" />
 
-        <TextView
-            android:id="@+id/widget_manage_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Gestionar inventario"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            android:layout_marginEnd="8dp" />
+    <!-- ¿Cuánto tengo de inventario? arriba derecha -->
+    <TextView
+        android:id="@+id/widget_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¿Cuánto tengo de inventario?"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
 
-        <ImageView
-            android:id="@+id/widget_manage_icon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_manage_orange"
-            android:contentDescription="Gestionar Inventario" />
-    </LinearLayout>
+    <!-- Icono ojo -->
+    <ImageView
+        android:id="@+id/widget_eye_icon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/widget_question"
+        android:layout_marginTop="4dp"
+        android:contentDescription="Mostrar/ocultar saldo" />
+
+    <!-- Saldo / **** -->
+    <TextView
+        android:id="@+id/widget_balance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$ ****"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:layout_toStartOf="@id/widget_eye_icon"
+        android:layout_alignBottom="@id/widget_eye_icon"
+        android:layout_marginEnd="8dp" />
+
+    <!-- Gestionar inventario (texto) -->
+    <TextView
+        android:id="@+id/widget_manage_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gestionar inventario"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="24dp" />
+
+    <!-- Icono gestionar inventario -->
+    <ImageView
+        android:id="@+id/widget_manage_icon"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_toEndOf="@id/widget_manage_label"
+        android:layout_alignBaseline="@id/widget_manage_label"
+        android:layout_marginStart="4dp"
+        android:src="@android:drawable/ic_menu_manage"
+        android:tint="#FA8523"
+        android:contentDescription="Ir a gestionar inventario" />
 
 </RelativeLayout>

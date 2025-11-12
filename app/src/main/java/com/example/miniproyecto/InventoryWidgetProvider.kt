@@ -3,66 +3,106 @@ package com.example.miniproyecto
 import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.widget.RemoteViews
+import java.text.DecimalFormat
 
 class InventoryWidgetProvider : AppWidgetProvider() {
 
-    private var isBalanceVisible = false
-    private var balanceAmount: String = "$ 3.326.00,00" // Ejemplo, luego conecta con Room
+    companion object {
+        private const val ACTION_TOGGLE_BALANCE = "com.example.miniproyecto.TOGGLE_BALANCE"
+        private const val PREFS_NAME = "inventory_widget_prefs"
+        private const val KEY_BALANCE_VISIBLE = "balance_visible"
+    }
 
-    override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
+    // Lista base que debería ser la misma lógica de tu inventario
+    private val productosDemo = listOf(
+        Producto("Arroz", "123", 3326.00, 10),
+        Producto("Frijoles", "124", 12000.00, 5)
+    )
+
+    override fun onUpdate(
+        context: Context,
+        appWidgetManager: AppWidgetManager,
+        appWidgetIds: IntArray
+    ) {
+        // Se actualiza cada widget activo
         for (widgetId in appWidgetIds) {
-            updateAppWidget(context, appWidgetManager, widgetId)
+            updateWidget(context, appWidgetManager, widgetId)
         }
     }
 
-    private fun updateAppWidget(context: Context, appWidgetManager: AppWidgetManager, appWidgetId: Int) {
+    override fun onReceive(context: Context, intent: Intent) {
+        // MUY IMPORTANTE: primero llama al padre correctamente
+        super.onReceive(context, intent)
+
+        // Si el usuario presiona el icono del ojo (toggle)
+        if (intent.action == ACTION_TOGGLE_BALANCE) {
+
+            val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+            val visible = prefs.getBoolean(KEY_BALANCE_VISIBLE, false)
+            prefs.edit().putBoolean(KEY_BALANCE_VISIBLE, !visible).apply()
+
+            val appWidgetManager = AppWidgetManager.getInstance(context)
+            val ids = appWidgetManager.getAppWidgetIds(
+                ComponentName(context, InventoryWidgetProvider::class.java)
+            )
+
+            // Vuelve a dibujar todos los widgets
+            for (id in ids) {
+                updateWidget(context, appWidgetManager, id)
+            }
+        }
+    }
+
+    private fun updateWidget(context: Context, manager: AppWidgetManager, widgetId: Int) {
         val views = RemoteViews(context.packageName, R.layout.widget_inventory)
 
-        // Mostrar saldo u ocultar
-        if (isBalanceVisible) {
-            views.setTextViewText(R.id.widget_balance, balanceAmount)
+        val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        val isVisible = prefs.getBoolean(KEY_BALANCE_VISIBLE, false)
+
+        val saldoGeneral = getSaldoGeneral()
+
+        if (isVisible) {
+            views.setTextViewText(R.id.widget_balance, saldoGeneral)
             views.setImageViewResource(R.id.widget_eye_icon, R.drawable.ic_eye_closed)
         } else {
             views.setTextViewText(R.id.widget_balance, "$ ****")
             views.setImageViewResource(R.id.widget_eye_icon, R.drawable.ic_eye_open)
         }
 
-        // Clic en el ojo para mostrar/ocultar
-        val eyeIntent = Intent(context, InventoryWidgetProvider::class.java).apply {
-            action = "TOGGLE_BALANCE"
-            putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
+        // Toggle ojo (mostrar/ocultar)
+        val toggleIntent = Intent(context, InventoryWidgetProvider::class.java).apply {
+            action = ACTION_TOGGLE_BALANCE
         }
-        val eyePendingIntent = PendingIntent.getBroadcast(
-            context, appWidgetId, eyeIntent,
+
+        val togglePending = PendingIntent.getBroadcast(
+            context,
+            0,
+            toggleIntent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE
         )
-        views.setOnClickPendingIntent(R.id.widget_eye_icon, eyePendingIntent)
+        views.setOnClickPendingIntent(R.id.widget_eye_icon, togglePending)
 
-        // Clic en "Gestionar inventario", abrir Login
-        val manageIntent = Intent(context, LoginActivity::class.java) // Remplaza por tu actividad de login real
-        val managePendingIntent = PendingIntent.getActivity(
-            context, 0, manageIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE
+        // Ir al login (gestionar inventario)
+        val manageIntent = Intent(context, LoginActivity::class.java)
+        val managePending = PendingIntent.getActivity(
+            context,
+            1,
+            manageIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE
         )
-        views.setOnClickPendingIntent(R.id.widget_manage_icon, managePendingIntent)
-        views.setOnClickPendingIntent(R.id.widget_manage_label, managePendingIntent)
+        views.setOnClickPendingIntent(R.id.widget_manage_icon, managePending)
+        views.setOnClickPendingIntent(R.id.widget_manage_label, managePending)
 
-        appWidgetManager.updateAppWidget(appWidgetId, views)
+        manager.updateAppWidget(widgetId, views)
     }
 
-    override fun onReceive(context: Context?, intent: Intent?) {
-        super.onReceive(context, intent)
-        if (intent?.action == "TOGGLE_BALANCE" && context != null) {
-            isBalanceVisible = !isBalanceVisible
-            val appWidgetManager = AppWidgetManager.getInstance(context)
-            val appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID)
-            if (appWidgetId != AppWidgetManager.INVALID_APPWIDGET_ID) {
-                updateAppWidget(context, appWidgetManager, appWidgetId)
-            }
-        }
+    private fun getSaldoGeneral(): String {
+        val total = productosDemo.sumOf { it.precioUnitario * it.cantidad }
+        val df = DecimalFormat("#,###,##0.00")
+        return "$ " + df.format(total).replace(",", ".")
     }
 }
-
-
