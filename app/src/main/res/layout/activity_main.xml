@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#303030"
+    tools:context=".MainActivity">
+
+    <!-- Criterio 2: Imagen alusiva (superior derecha) -->
+    <ImageView
+        android:id="@+id/iv_inventory_logo"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/ic_inventory_logo"
+        tools:ignore="ContentDescription" />
+
+    <!-- Criterio 3: Título "Inventory" -->
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_inventory_logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Inventory"
+        android:textColor="#e7522e"
+        android:textSize="34sp"
+        android:textStyle="bold" />
+
+    <!-- Criterio 4: Animación Lottie de huella digital -->
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_fingerprint"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/fingerprint_animation" />
+
+</RelativeLayout>
+    

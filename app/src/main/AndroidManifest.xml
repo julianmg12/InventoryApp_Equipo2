@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MiniProyecto">
-        <receiver android:name=".InventoryWidgetProvider">
+
+        <receiver android:name=".InventoryWidgetProvider"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -19,6 +21,7 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/inventory_widget_info" />
         </receiver>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -26,10 +29,31 @@
             android:theme="@style/Theme.MiniProyecto">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".HomeInventarioActivity"
+            android:exported="false" />
+
+
+        <activity
+            android:name=".ProductDetailActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".EditProductActivity"
+            android:exported="false" />
+
+
+
+
     </application>
+
 
 </manifest>

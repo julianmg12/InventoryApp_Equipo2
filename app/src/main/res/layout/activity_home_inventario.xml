@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CC000000">
+
+    <!--  Toolbar superior -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#424242"
+        android:minHeight="?attr/actionBarSize"
+        app:logo="@drawable/ic_inventory_logo"
+        app:title="Inventario"
+        app:titleTextColor="#FFFFFF"
+        app:titleTextAppearance="@style/ToolbarTitleText" />
+
+    <!--  ProgressBar (circular naranja) -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_centerInParent="true"
+        android:indeterminate="true"
+        android:visibility="gone"
+        android:indeterminateTint="#FA8523"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!--  Lista de productos -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_below="@id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp"
+        android:layout_marginBottom="72dp" />
+
+    <!--  Botón flotante para agregar producto -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="24dp"
+        android:contentDescription="Agregar producto"
+        android:src="@android:drawable/ic_input_add"
+        app:tint="#FFFFFF"
+        app:backgroundTint="#FA8523" />
+
+</RelativeLayout>

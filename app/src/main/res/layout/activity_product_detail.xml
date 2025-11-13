@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CC000000">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Toolbar HU5 Criterio 1 -->
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#424242"
+            android:minHeight="?attr/actionBarSize"
+            app:titleTextColor="#FFFFFF" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Tarjeta blanca HU5 Criterio 2 -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:id="@+id/tvNombre"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Nombre del producto"
+                            android:textStyle="bold"
+                            android:textSize="18sp"
+                            android:textColor="#000000" />
+
+                        <TextView
+                            android:id="@+id/tvPrecio"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Precio unidad: $ 0,00"
+                            android:layout_marginTop="8dp"
+                            android:textColor="#000000" />
+
+                        <TextView
+                            android:id="@+id/tvCantidad"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cantidad disponible: 0"
+                            android:layout_marginTop="4dp"
+                            android:textColor="#000000" />
+
+                        <TextView
+                            android:id="@+id/tvTotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Total: $ 0,00"
+                            android:layout_marginTop="8dp"
+                            android:textStyle="bold"
+                            android:textColor="#000000" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Botón Eliminar HU5 Criterio 3 -->
+                <Button
+                    android:id="@+id/btnEliminar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Eliminar"
+                    android:textColor="#FFFFFF"
+                    android:backgroundTint="#FA8523"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:padding="12dp" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabEditar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|start"
+            android:layout_margin="24dp"
+            android:contentDescription="Editar producto"
+            app:backgroundTint="#FA8523"
+            app:srcCompat="@android:drawable/ic_menu_edit"
+            app:tint="#FFFFFF" />
+
+    </LinearLayout>
+
+    <!-- FAB Editar HU5 Criterio 4 -->
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

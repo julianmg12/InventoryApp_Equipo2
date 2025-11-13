@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CC000000">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Toolbar HU 6 Criterio 1 -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#424242"
+            android:minHeight="?attr/actionBarSize"
+            app:titleTextColor="#FFFFFF" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Tarjeta blanca -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <!-- Criterio 2: Id no editable -->
+                        <TextView
+                            android:id="@+id/tvId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Id: "
+                            android:textStyle="bold"
+                            android:textColor="#000000"
+                            android:textSize="16sp" />
+
+                        <!-- Criterio 3, 6: Nombre artículo -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Nombre artículo"
+                            android:layout_marginTop="12dp"
+                            android:textColor="#000000" />
+
+                        <EditText
+                            android:id="@+id/etNombre"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:drawable/edit_text"
+                            android:padding="8dp"
+                            android:hint="Nombre del producto"
+                            android:maxLength="40"
+                            android:inputType="textCapSentences"
+                            android:textColor="#000000"
+                            android:textColorHint="#888888" />
+
+                        <!-- Criterio 3, 7: Precio -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Precio"
+                            android:layout_marginTop="12dp"
+                            android:textColor="#000000" />
+
+                        <EditText
+                            android:id="@+id/etPrecio"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:drawable/edit_text"
+                            android:padding="8dp"
+                            android:hint="Precio por unidad"
+                            android:inputType="numberDecimal"
+                            android:maxLength="20"
+                            android:textColor="#000000"
+                            android:textColorHint="#888888" />
+
+                        <!-- Criterio 3, 8: Cantidad -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cantidad"
+                            android:layout_marginTop="12dp"
+                            android:textColor="#000000" />
+
+                        <EditText
+                            android:id="@+id/etCantidad"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:drawable/edit_text"
+                            android:padding="8dp"
+                            android:hint="Cantidad disponible"
+                            android:inputType="number"
+                            android:maxLength="4"
+                            android:textColor="#000000"
+                            android:textColorHint="#888888" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Criterio 4 y 5: botón Editar -->
+                <Button
+                    android:id="@+id/btnEditar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Editar"
+                    android:textColor="#FFFFFF"
+                    android:backgroundTint="#FA8523"
+                    android:layout_marginTop="8dp"
+                    android:padding="12dp"
+                    android:enabled="false" />
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#000000">
+
+    <!--  Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#424242"
+        android:padding="16dp"
+        app:title="Agregar producto"
+        app:titleTextColor="#FFFFFF" />
+
+    <!--  Contenedor de los campos -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <!-- Campo: Código del producto -->
+            <EditText
+                android:id="@+id/etCodigo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Código del producto"
+                android:textColorHint="#FFFFFF"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#FFFFFF"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Campo: Nombre del producto -->
+            <EditText
+                android:id="@+id/etNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre del producto"
+                android:textColorHint="#FFFFFF"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#FFFFFF"
+                android:layout_marginBottom="16dp" />
+
+
+
+            <!-- Campo: Cantidad -->
+            <EditText
+                android:id="@+id/etCantidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Cantidad"
+                android:inputType="number"
+                android:textColorHint="#FFFFFF"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#FFFFFF"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Campo: Precio -->
+            <EditText
+                android:id="@+id/etPrecio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Precio"
+                android:inputType="numberDecimal"
+                android:textColorHint="#FFFFFF"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#FFFFFF"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Botón Guardar -->
+            <Button
+                android:id="@+id/btnGuardar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Guardar"
+                android:backgroundTint="#FFA500"
+                android:textColor="#FFFFFF"
+                android:padding="12dp" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
+
+
+
+

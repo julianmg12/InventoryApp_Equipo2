@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="ToolbarTitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">20sp</item>
+    </style>
 
-    <style name="Theme.MiniProyecto" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.MiniProyecto" parent="Theme.AppCompat.Light.NoActionBar">
+
+    </style>
+
 </resources>
+    
